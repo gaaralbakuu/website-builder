@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Back-end
+RewriteCond %{HTTP_HOST} ^api\.builder\.test$ [NC]
+RewriteRule ^(.*)$ src/api.php [L]
+
+# Front-end
+RewriteCond %{HTTP_HOST} ^builder\.test$ [NC]
+RewriteRule ^(.*)$ public/index.php [L]
