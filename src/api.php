@@ -2,6 +2,7 @@
 
 namespace Src;
 
+use Core\Database;
 use Core\RouterMain;
 use Core\Request;
 use Core\Response;
@@ -31,6 +32,7 @@ class Api extends RouterMain
         new Session();
         new Request();
         new Response();
+        new Database();
     }
 
     private function render()

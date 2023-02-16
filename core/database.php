@@ -41,6 +41,10 @@ class Database
     //     return $tableClass;
     // }
 
+    static function getConnection(){
+        return static::$mysqli;
+    }
+
     static function insertId(): int
     {
         return static::$mysqli->insert_id;
@@ -59,7 +63,7 @@ class Database
 
     function __destruct()
     {
-        //static::$mysqli->close();
+        static::$mysqli->close();
     }
 }
 
