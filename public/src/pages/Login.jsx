@@ -15,9 +15,24 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const CustomContainerBox = styled(Box)(({ theme }) => ({
+  flex: 1,
+  position: "relative",
+  [theme.breakpoints.down("md")]: {
+    paddingTop: 100,
+  },
+  [theme.breakpoints.up("md")]: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+}));
+
 const CustomBox = styled(Box)(({ theme }) => ({
+  padding: "0 10px",
   maxWidth: 480,
   width: "100%",
+  margin: "0 auto",
 }));
 
 const CustomLink = styled(MuiLink)(({ theme }) => ({
@@ -27,8 +42,8 @@ const CustomLink = styled(MuiLink)(({ theme }) => ({
 const CustomButton = styled(Button)(({ theme }) => ({
   backgroundColor: "rgb(33, 43, 54)",
   "&:hover": {
-    backgroundColor: "rgb(33, 43, 54)"
-  }
+    backgroundColor: "rgb(33, 43, 54)",
+  },
 }));
 
 export default () => {
@@ -41,13 +56,23 @@ export default () => {
   };
 
   return (
-    <Box flex={1} display={"flex"} justifyContent="center" alignItems="center">
+    <CustomContainerBox>
+      <Box position={"absolute"} sx={{ left: 10, top: 10 }}>
+        <Typography
+          variant="h5"
+          fontStyle={"italic"}
+          fontWeight={700}
+          color={({ palette }) => palette.success.main}
+        >
+          Dat Group
+        </Typography>
+      </Box>
       <CustomBox>
         <Box display={"flex"} flexDirection={"column"} mb={5}>
           <Typography variant={"h5"} fontWeight={700}>
             Sign in to Manager
           </Typography>
-          <Typography variant="body2" mt={2}>
+          <Typography component={"div"} variant="body2" mt={2}>
             <Box display={"flex"}>
               <Box>New users?</Box>
               <Box>
@@ -118,6 +143,6 @@ export default () => {
           </CustomButton>
         </Box>
       </CustomBox>
-    </Box>
+    </CustomContainerBox>
   );
 };
