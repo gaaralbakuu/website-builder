@@ -60,7 +60,6 @@ class Database
         static::$mysqli->close();
     }
 
-
     function __destruct()
     {
         static::$mysqli->close();

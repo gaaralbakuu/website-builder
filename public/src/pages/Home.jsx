@@ -1,12 +1,7 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
 
-export default () => {
-  const navigate = useNavigate();
+function Home() {
+    return ( <h1>HEHEHEHE</h1> );
+}
 
-  useEffect(() => {
-    navigate("/manager/");
-  }, []);
-
-  return;
-};
+export default Home;

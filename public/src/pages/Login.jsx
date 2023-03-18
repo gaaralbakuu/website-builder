@@ -1,148 +1,81 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
+  Button,
+  FormControl,
+  OutlinedInput,
+  Paper,
   styled,
   Typography,
-  Link as MuiLink,
-  TextField,
-  IconButton,
-  InputAdornment,
-  OutlinedInput,
-  InputLabel,
-  FormControl,
-  Button,
 } from "@mui/material";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { blue, grey } from "@mui/material/colors";
+import React, { Fragment } from "react";
+import { NavLink } from "react-router-dom";
 
-const CustomContainerBox = styled(Box)(({ theme }) => ({
-  flex: 1,
-  position: "relative",
-  [theme.breakpoints.down("md")]: {
-    paddingTop: 100,
-  },
-  [theme.breakpoints.up("md")]: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-}));
-
-const CustomBox = styled(Box)(({ theme }) => ({
-  padding: "0 10px",
-  maxWidth: 480,
+const PaperLogin = styled(Paper)(({ theme }) => ({
+  maxWidth: theme.breakpoints.values.sm,
   width: "100%",
-  margin: "0 auto",
+  padding: 40,
 }));
 
-const CustomLink = styled(MuiLink)(({ theme }) => ({
-  color: theme.palette.success.main,
+const BoxLabelRegister = styled(Box)(() => ({
+  display: "flex",
+  gap: 4,
+  marginTop: 16,
+  marginBottom: 32,
+  flexWrap: "wrap",
 }));
 
-const CustomButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "rgb(33, 43, 54)",
+const LinkRegister = styled(Typography)(({ theme }) => ({
+  color: blue[500],
+  fontWeight: 500,
+  textDecoration: "none",
   "&:hover": {
-    backgroundColor: "rgb(33, 43, 54)",
+    textDecoration: "underline",
   },
 }));
 
-export default () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
+function Login() {
   return (
-    <CustomContainerBox>
-      <Box position={"absolute"} sx={{ left: 10, top: 10 }}>
+    <PaperLogin>
+      <Typography variant="h4" fontWeight={700}>
+        Đăng nhập
+      </Typography>
+      <BoxLabelRegister>
         <Typography
-          variant="h5"
-          fontStyle={"italic"}
-          fontWeight={700}
-          color={({ palette }) => palette.success.main}
+          component={"span"}
+          variant="body1"
+          fontWeight={500}
+          color={grey[600]}
         >
-          Dat Group
-        </Typography>
-      </Box>
-      <CustomBox>
-        <Box display={"flex"} flexDirection={"column"} mb={5}>
-          <Typography variant={"h5"} fontWeight={700}>
-            Sign in to Manager
-          </Typography>
-          <Typography component={"div"} variant="body2" mt={2}>
-            <Box display={"flex"}>
-              <Box>New users?</Box>
-              <Box>
-                <CustomLink
-                  component={Link}
-                  to={"/register"}
-                  fontWeight={700}
-                  ml={0.5}
-                  underline={"hover"}
-                >
-                  Create an account
-                </CustomLink>
-              </Box>
-            </Box>
-          </Typography>
-        </Box>
-        <Box display={"flex"} flexDirection={"column"}>
-          <Box>
-            <TextField
-              variant={"outlined"}
-              label={"Email address"}
-              fullWidth={true}
-            />
-          </Box>
-          <Box sx={{ mt: 3 }}>
-            <FormControl fullWidth={true} variant={"outlined"}>
-              <InputLabel htmlFor={"outlined-adornment-password"}>
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id={"outlined-adornment-password"}
-                type={showPassword ? "text" : "password"}
-                endAdornment={
-                  <InputAdornment position={"end"}>
-                    <IconButton
-                      aria-label={"toggle password visibility"}
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge={"end"}
-                    >
-                      {showPassword ? (
-                        <VisibilityOff fontSize={"small"} />
-                      ) : (
-                        <Visibility fontSize={"small"} />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label={"Password"}
-              />
-            </FormControl>
-          </Box>
-        </Box>
-        <Box
-          display={"flex"}
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-          my={2}
-        >
-          <Box></Box>
-          <MuiLink component={Link} to={"auth/forgot"} color={"#000"}>
-            <Typography variant={"body2"}>Forgot password?</Typography>
-          </MuiLink>
-        </Box>
-        <Box>
-          <CustomButton size={"large"} fullWidth={true}>
-            Login
-          </CustomButton>
-        </Box>
-      </CustomBox>
-    </CustomContainerBox>
+          Chưa có tài khoản?
+        </Typography>{" "}
+        <LinkRegister component={NavLink} to={"/"}>
+          Tạo tài khoản
+        </LinkRegister>
+      </BoxLabelRegister>
+
+      <Typography fontWeight={500} color={grey[700]}>
+        Tài khoản
+      </Typography>
+      <FormControl
+        variant="outlined"
+        fullWidth={true}
+        style={{ paddingTop: 8, paddingBottom: 16 }}
+      >
+        <OutlinedInput />
+      </FormControl>
+      <Typography fontWeight={500} color={grey[700]}>
+        Mật khẩu
+      </Typography>
+      <FormControl
+        variant="outlined"
+        fullWidth={true}
+        style={{ paddingTop: 8, paddingBottom: 16 }}
+      >
+        <OutlinedInput />
+      </FormControl>
+    </PaperLogin>
   );
-};
+}
+
+export default Login;

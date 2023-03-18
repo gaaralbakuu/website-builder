@@ -1,49 +1,20 @@
-import { Box } from "@mui/material";
-import { createBrowserRouter, Outlet } from "react-router-dom";
-
-// Route Element
+import React from "react";
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "../components/Layout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import ManagerHome from "../pages/manager/Home";
-import ManagerLayout from "../pages/manager/Layout";
-import ProtectedRoute from "./ProtectedRoute";
-
-const AuthLayout = () => {
-  return (
-    <Box sx={{ display: "flex", width: "100%", height: "100%" }}>
-      <Outlet />
-    </Box>
-  );
-};
 
 export default createBrowserRouter([
   {
-    element: <AuthLayout />,
+    element: <Layout />,
     children: [
       {
-        element: <Home />,
         path: "/",
+        element: <Home />,
       },
       {
-        element: <Login />,
         path: "/login",
-      },
-
-      // manager
-      {
-        element: <ProtectedRoute />,
-        children: [
-          {
-            element: <ManagerLayout />,
-            path: "/manager",
-            children: [
-              {
-                element: <ManagerHome />,
-                index: true,
-              },
-            ],
-          },
-        ],
+        element: <Login />,
       },
     ],
   },
